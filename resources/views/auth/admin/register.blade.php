@@ -1,3 +1,4 @@
+{{--halaman register admin --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +36,18 @@
                 <div class="form-group">
                   <input name="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Alamat Email" value="{{ old('email') }}">
                   @error('email')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <input name="phone" type="text" class="form-control form-control-user @error('phone') is-invalid @enderror" id="exampleInputPhone" placeholder="Nomor Telepon" value="{{ old('phone') }}">
+                  @error('phone')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <input name="address" type="text" class="form-control form-control-user @error('address') is-invalid @enderror" id="exampleInputAddress" placeholder="Alamat" value="{{ old('address') }}">
+                  @error('address')
                     <span class="invalid-feedback">{{ $message }}</span>
                   @enderror
                 </div>

@@ -1,7 +1,8 @@
+{{--halaman utama untuk menampilkan seluruh data karyawan --}}
 @extends('layouts.app')
 @section('contents')
 <div class="d-flex align-items-center justify-content-between">
-    <h1 class="mb-0">List Karyawan</h1>
+    <h1 class="mb-0">Data Karyawan</h1>
     <a href="{{ route('supirs.create') }}" class="btn btn-primary">Tambah Karyawan Baru</a>
 </div>
 <hr/>
@@ -16,7 +17,7 @@
             <th>ID</th>
             <th>Nama</th>
             <th>Nomor WhatsApp</th>
-            <th>Deskripsi</th>
+            <th>Jabatan</th>
             <th>Aksi</th>
         </tr>
     </thead>

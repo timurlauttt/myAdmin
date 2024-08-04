@@ -1,3 +1,4 @@
+{{--halaman untuk menambah/upload file baru --}}
 @extends('layouts.app')
 @section('contents')
 <!DOCTYPE html>

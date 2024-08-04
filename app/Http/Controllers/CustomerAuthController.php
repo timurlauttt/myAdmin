@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
+
+/*
+------ controller autentikasi customer/supir----------------
+*/
 class CustomerAuthController extends Controller
 {
     public function register()
@@ -63,7 +67,7 @@ class CustomerAuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('customer.dashboard');
+        return redirect()->route('customers.dashboard');
     }
 
     public function logout(Request $request)
@@ -82,18 +86,16 @@ class CustomerAuthController extends Controller
         return view('customers.dashboard', compact('customer', 'files'));
     }
 
-    public function markAsPrinted($id)
+    public function print($id)
     {
+        // Ambil file berdasarkan ID
         $file = File::findOrFail($id);
-
-        // Pastikan file milik customer yang sedang login
-        if ($file->customer_id !== Auth::guard('customer')->id()) {
-            return redirect()->route('customer.dashboard')->with('error', 'Unauthorized action.');
-        }
-
-        $file->status = 'Sudah Diprint';
+        
+        // Tandai file sebagai sudah diprint
+        $file->status = 'Sudah di Print';
         $file->save();
 
-        return redirect()->route('customer.dashboard')->with('success', 'File berhasil di print.');
+        // Tampilkan view untuk mencetak file
+        return view('files.print', compact('file'));
     }
 }

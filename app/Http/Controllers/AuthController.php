@@ -27,12 +27,16 @@ class AuthController extends Controller
         Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'phone' => 'required',
+            'address' => 'required',
             'password' => 'required|confirmed'
         ])->validate();
         
         User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'   =>   $request->name,
+            'email'  =>  $request->email,
+            'phone'  =>   $request->phone,
+            'address'=> $request->address,
             'password' => Hash::make($request->password),
             'level' => 'Admin'
         ]);
@@ -78,9 +82,33 @@ class AuthController extends Controller
     // nampilin halaman profile
     public function profile()
     {
-        return view('profile');
+        return view('profile.index');
     }
     
+    public function editProfile()
+    {
+        return view('profile.edit');
+    }   
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->address = $request->input('address');
+
+        // Simpan perubahan
+        $user->save();
+
+        return redirect()->route('profile.index')->with('success', 'Profil berhasil diperbarui');
+    }
 }
 /*
 ------ controller autentikasi user/admin----------------

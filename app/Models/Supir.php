@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-//models supir
+//models buat karyawan
 class supir extends Model
 {
     use HasFactory;
     protected $fillable = [
         'name',
         'no_wa',
-        'description'
+        'description' //untuk deskripsi jabatan
     ];
 }

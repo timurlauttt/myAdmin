@@ -7,6 +7,10 @@ use App\Models\File;
 use App\Http\Controllers\CustomerAuthController;
 use Illuminate\Support\Facades\Auth;
 
+
+/*
+------ controller untuk dashboard customer/supir ----------------
+*/
 class CustomerDashboardController extends Controller
 {
     public function index()
@@ -17,27 +21,17 @@ class CustomerDashboardController extends Controller
 
     }
     
-    public function print()
+    public function print($id)
     {
-        $files = File::all();
-        return print('id');
-    }
-
-    public function markAsPrinted($id)
-    {   
+        // Ambil file berdasarkan ID
         $file = File::findOrFail($id);
-        $file->status = 'Sudah Diprint';
+        
+        // Tandai file sebagai sudah diprint
+        $file->status = 'Sudah di Print';
         $file->save();
 
-    return redirect()->route('customer.dashboard')->with('success', 'File berhasil di print.');
+        // Tampilkan view untuk mencetak file
+        return view('files.print', compact('file'));
     }
 
-    public function print2($id)
-    {
-        $file = File::findOrFail($id);
-        $file->status = 'Sudah Diprint';
-        $file->save();
-        $files = File::all();
-        return print('id');
-    }
 }

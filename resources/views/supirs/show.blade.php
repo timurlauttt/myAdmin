@@ -1,3 +1,4 @@
+{{--halaman untuk melihat detail data karyawan --}}
 @extends('layouts.app')
 @section('')
 @section('contents')
@@ -29,4 +30,5 @@
         <input type="text" name="updated_at" class="form-control" placeholder="Updated At" value="{{ $supir->updated_at }}" readonly>
     </div>
 </div>
+<button type="button" class="btn btn-secondary" onclick="window.history.back()">Kembali</button>
 @endsection

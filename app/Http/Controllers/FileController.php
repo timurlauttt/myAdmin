@@ -7,9 +7,8 @@ use App\Models\File;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Storage;
 
-
 /*
------- controller file----------------
+------ controller files ----------------
 */
 class FileController extends Controller
 {
@@ -30,7 +29,7 @@ class FileController extends Controller
         $request->validate([
             'file' => 'required|mimes:pdf|max:2048',
             'customer_id' => 'required|exists:customers,id', // Validasi bahwa customer_id valid
-            ]);
+        ]);
     
         $file = $request->file('file');
         $path = $file->store('pdf', 'public');
@@ -41,7 +40,7 @@ class FileController extends Controller
             'type' => $file->getClientMimeType(),
             'size' => $file->getSize(),
             'customer_id' => $request->input('customer_id'), // Simpan customer_id dari request
-            'status'=>'Belum di Print',
+            'status' => 'Belum di Print',
         ]);
 
         return redirect()->route('files.index')->with('success', 'File sukses ditambahkan.');
@@ -53,28 +52,33 @@ class FileController extends Controller
         return view('files.edit', compact('file', 'customers'));
     }
 
-    public function update(Request $request, File $file)
+
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'file' => 'required|mimes:pdf|max:2048',
-            'id_customers' => 'required|exists:id_customers' // Validasi customer_id
+            'file' => 'required|file|mimes:pdf|max:2048',
         ]);
 
-        if (Storage::disk('public')->exists($file->path)) {
-            Storage::disk('public')->delete($file->path);
+        $file = File::findOrFail($id);
+
+        if ($request->hasFile('file')) {
+            $uploadedFile = $request->file('file');
+            $filename = time() . '_' . $uploadedFile->getClientOriginalName();
+            $path = $uploadedFile->storeAs('public/files', $filename);
+
+            // Update file record in the database
+            $file->path = $path;
+            $file->name = $filename;
+            $file->save();
+
+            return redirect()->route('files.index')->with('success', 'File updated successfully.');
         }
 
-        $fileData = $request->file('file');
-        $path = $fileData->store('pdf', 'public');
-
-        $file->update([
-            'name' => $fileData->getClientOriginalName(),
-            'path' => $path,
-            'id_customers' => $request->id_customers, // Update customer_id
-        ]);
-
-        return redirect()->route('files.index')->with('success', 'File sukses diperbaharui.');
+        return redirect()->route('files.edit', $file->id)->withErrors(['file' => 'File upload failed.']);
     }
+
+
+
 
     public function destroy(File $file)
     {
@@ -92,20 +96,18 @@ class FileController extends Controller
         return view('files.show', compact('file'));
     }
 
-    public function printFile($id)
+
+    public function print($id)
     {
+        // Ambil file berdasarkan ID
         $file = File::findOrFail($id);
+        
+        // Tandai file sebagai sudah diprint
+        $file->status = 'Sudah di Print';
+        $file->save();
+
+        // Tampilkan view untuk mencetak file
         return view('files.print', compact('file'));
     }
 
-    public function markAsPrinted($id)
-    {
-        $file = File::find($id);
-        if ($file) {
-            $file->status = 'Printed'; // Contoh perubahan status
-            $file->save();
-            return redirect()->route('files.index')->with('success', 'Berhasil!');
-    }
-        return redirect()->route('files.index')->with('error');
-    }
 }

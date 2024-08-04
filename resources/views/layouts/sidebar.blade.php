@@ -15,18 +15,24 @@
             <span>Dashboard Utama</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('supirs') }}">
+            <a class="nav-link" href="{{ route('files.index') }}">
+                <i class="fas fa-fw fa-file-alt"></i>
+                <span>Dokumen/File</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('supirs.index') }}">
                 <i class="fas fa-fw fa-user-alt"></i>
-                <span>Karyawan</span></a>
+                <span>Data Karyawan</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('files.index') }}">
-                    <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Dokumen/File</span>
+                <a class="nav-link" href="{{ route('customers.index') }}">
+                    <i class="fas fa-fw fa-user-alt"></i>
+                    <span>Data Supir</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/profile">
+                <a class="nav-link" href="{{ route('profile.index') }}">
                     <i class="fas fa-fw fa-user-alt"></i>
                     <span>Profil Admin</span></a>
                 </li>

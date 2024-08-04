@@ -1,3 +1,4 @@
+{{--halaman register supir --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

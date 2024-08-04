@@ -9,7 +9,7 @@ class AddStatusToFilesTable extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->string('status')->default('Belum Diprint');
+            $table->string('status')->default('Belum di Print');
         });
     }
 

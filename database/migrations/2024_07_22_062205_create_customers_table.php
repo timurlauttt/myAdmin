@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
-// migration models customer/supir untuk regist/login customer/supir
 class CreateCustomersTable extends Migration
 {
     /**

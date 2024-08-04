@@ -1,3 +1,4 @@
+{{--halaman untuk mengedit data karyawan --}}
 @extends('layouts.app')
 @section('')
 @section('contents')
@@ -13,18 +14,19 @@
         </div>
         <div class="col mb-3">
             <label class="form-label">Nomor WhatsApp</label>
-            <input type="text" name="nomor whatsapp" class="form-control" placeholder="nomor whatsapp" value="{{ $supir->no_wa }}" >
+            <input type="text" name="no_wa" class="form-control" placeholder="no_wa" value="{{ $supir->no_wa }}" >
         </div>
     </div>
     <div class="row">
         <div class="col mb-3">
             <label class="form-label">Deskripsi</label>
-            <textarea class="form-control" name="description" placeholder="Descriptoin" >{{ $supir->description }}</textarea>
+            <textarea class="form-control" name="description" placeholder="descriptoin" >{{ $supir->description }}</textarea>
         </div>
     </div>
     <div class="row">
         <div class="d-grid">
             <button class="btn btn-warning">Simpan Data Karyawan</button>
+            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Kembali</button>
         </div>
     </div>
 </form>

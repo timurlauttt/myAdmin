@@ -1,3 +1,4 @@
+{{--halaman untuk menambah karyawan baru --}}
 @extends('layouts.app')
 @section('')
 @section('contents')
@@ -15,12 +16,13 @@
     </div>
     <div class="row mb-3">
         <div class="col">
-            <textarea class="form-control" name="description" placeholder="Deskripsi"></textarea>
+            <textarea class="form-control" name="description" placeholder="Jabatan"></textarea>
         </div>
     </div>
     <div class="row">
         <div class="d-grid">
             <button type="submit" class="btn btn-primary">Tambah</button>
+            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Kembali</button>
         </div>
     </div>
 </form>

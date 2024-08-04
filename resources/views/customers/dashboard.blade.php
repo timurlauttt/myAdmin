@@ -1,3 +1,4 @@
+{{--halaman dashboard utama supir --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,11 +49,11 @@
                         <td>{{ $file->name }}</td>
                         <td>
                           <div class="btn-group">
-                            <a href="{{ route('print2', $file->id) }}" class="btn btn-primary">Print File</a>
-                            <form action="{{ route('files.markAsPrinted', $file->id) }}" method="POST" class="d-inline" onsubmit="return markAsPrinted(event)">
+                            <a href="{{ route('files.print', $file->id) }}" class="btn btn-primary">Print</a>
+                            {{-- <form action="{{ route('files.markAsPrinted', $file->id) }}" method="POST" class="d-inline" onsubmit="return markAsPrinted(event)">
                               @csrf
                               <button type="submit" class="btn btn-success">Tandai Sudah di Print</button>
-                            </form>
+                            </form> --}}
                             <a href="{{ Storage::url($file->path) }}" class="btn btn-primary" target="_blank">Buka File</a>
                           </div>
                         </td>                      
@@ -74,15 +75,6 @@
   <script>
     function confirmLogout() {
       return confirm("Anda yakin ingin Logout?");
-    }
-
-    function markAsPrinted(event) {
-      event.preventDefault(); 
-      if (confirm("Anda yakin?")) {
-        event.target.submit(); 
-        alert("Berhasil!");
-      }
-      return false; 
     }
   </script>
 </body>
