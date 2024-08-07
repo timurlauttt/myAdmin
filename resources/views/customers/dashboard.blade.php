@@ -1,4 +1,3 @@
-{{--halaman dashboard utama supir --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +24,13 @@
             <div class="p-5">
               <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h4 text-gray-900">Dashboard Utama Supir</h1>
-                <form action="{{ route('customer.logout') }}" method="POST" id="logoutForm">
-                  @csrf
-                  <button type="submit" class="btn btn-danger" onclick="return confirmLogout()">Logout</button>
-                </form>
+                <div class="btn-group">
+                  <a href="{{ route('customers.profile') }}" class="btn btn-info">Profil Anda</a>
+                  <form action="{{ route('customer.logout') }}" method="POST" id="logoutForm">
+                    @csrf
+                    <button type="submit" class="btn btn-danger" onclick="return confirmLogout()">Logout</button>
+                  </form>
+                </div>
               </div>
               <div>
                 <h2 class="h5 text-gray-900">Hi, {{ Auth::guard('customer')->user()->name }}</h2>

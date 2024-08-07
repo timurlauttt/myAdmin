@@ -1,4 +1,4 @@
-{{--halaman dashboard utama pada halaman milik admin --}}
+{{-- Halaman Dashboard Utama pada Halaman Milik Admin --}}
 @extends('layouts.app')
 @section('title', 'Dashboard Utama')
 @section('contents')
@@ -16,11 +16,11 @@
                 <div class="card-body">
                     @if($printedFiles->count() > 0)
                         <ul class="list-group">
-                            @foreach($printedFiles as $file)
+                            @foreach($printedFiles as $index => $file)
                                 <li class="list-group-item d-flex align-items-center">
                                     <div class="d-flex justify-content-between w-100">
                                         <div>
-                                            <h6 class="mb-0">{{ $file->name }}</h6>
+                                            <h6 class="mb-0">{{ $index + 1 }}. {{ $file->name }}</h6>
                                             <small class="text-muted">{{ $file->updated_at->format('d M Y, H:i') }}</small>
                                             <small class="text-muted">Supir: {{ $file->customer->name }}</small>
                                         </div>
@@ -48,11 +48,11 @@
                 <div class="card-body">
                     @if($unprintedFiles->count() > 0)
                         <ul class="list-group">
-                            @foreach($unprintedFiles as $file)
+                            @foreach($unprintedFiles as $index => $file)
                                 <li class="list-group-item d-flex align-items-center">
                                     <div class="d-flex justify-content-between w-100">
                                         <div>
-                                            <h6 class="mb-0">{{ $file->name }}</h6>
+                                            <h6 class="mb-0">{{ $index + 1 }}. {{ $file->name }}</h6>
                                             <small class="text-muted">{{ $file->created_at->format('d M Y, H:i') }}</small>
                                             <small class="text-muted">Supir: {{ $file->customer->name }}</small>
                                         </div>
@@ -80,10 +80,10 @@
                 <div class="card-body">
                     @if($customers->count() > 0)
                         <ul class="list-group">
-                            @foreach($customers as $customer)
+                            @foreach($customers as $index => $customer)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div>
-                                        <h6 class="mb-0">{{ $customer->name }}</h6>
+                                        <h6 class="mb-0">{{ $index + 1 }}. {{ $customer->name }}</h6>
                                         <small class="text-muted">{{ $customer->email }}</small>
                                     </div>
                                     <span class="badge" style="background-color: #ffffff; color: #000000;">{{ $customer->wa_number }}</span>
@@ -109,10 +109,10 @@
                 <div class="card-body">
                     @if($supirs->count() > 0)
                         <ul class="list-group">
-                            @foreach($supirs as $supir)
+                            @foreach($supirs as $index => $supir)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div>
-                                        <h6 class="mb-0">{{ $supir->name }}</h6>
+                                        <h6 class="mb-0">{{ $index + 1 }}. {{ $supir->name }}</h6>
                                         <small class="text-muted">{{ $supir->description }}</small>
                                     </div>
                                     <span class="badge" style="background-color: #ffffff; color: #000000;">{{ $supir->no_wa }}</span>

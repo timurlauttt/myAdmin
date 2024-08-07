@@ -16,7 +16,7 @@
 </div>
 <div class="row">
     <div class="col mb-3">
-        <label class="form-label">Deskripsi</label>
+        <label class="form-label">Jabatan</label>
         <textarea class="form-control" name="description" placeholder="Descriptoin" readonly>{{ $supir->description }}</textarea>
     </div>
 </div>

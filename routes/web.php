@@ -8,6 +8,8 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\DashboardUtamaController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ActivityLogController;
 
 // Welcome Page
 Route::view('/', 'welcome');
@@ -28,9 +30,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/profile', 'updateProfile')->name('profile.update');
     Route::get('admin/logout', 'logoutAdmin')->middleware('auth')->name('admin.logout');
     Route::get('/profile', 'profile')->name('profile.index');
+    Route::get('/activity_logs', [ActivityLogController::class, 'index'])->name('activity_logs.index');
+
 });
 
-// Supir Management
+// Karyawan
 Route::prefix('supir')->controller(SupirsController::class)->group(function () {
     Route::get('', 'index')->name('supirs.index');
     Route::get('create', 'create')->name('supirs.create');
@@ -50,6 +54,9 @@ Route::controller(CustomerAuthController::class)->group(function () {
     Route::post('/customer/logout', 'logout')->name('customer.logout');
     Route::middleware('auth:customer')->group(function () {
         Route::get('/customer/dashboard', 'dashboard')->name('customers.dashboard');
+        Route::get('/customers/profile', [CustomerDashboardController::class, 'profile'])->name('customers.profile');
+        Route::get('/customers/edit/{id}', [CustomerDashboardController::class, 'edit'])->name('customers.edit');
+        Route::put('/customers/update/{id}', [CustomerDashboardController::class, 'update'])->name('customers.update');
     });
 });
 
@@ -58,3 +65,9 @@ Route::get('/files/print/{id}', [FileController::class, 'print'])->name('files.p
 
 // Customer (Supir) List
 Route::get('/customers', [SupirController::class, 'index'])->name('customers.index');
+
+// search admin
+Route::get('/search', [SearchController::class, 'search'])->name('search.results');
+
+// profil admin
+// Route::get('/customers/profile', [CustomerDashboardController::class, 'profile'])->name('customers.profile');

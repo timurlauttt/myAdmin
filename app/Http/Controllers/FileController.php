@@ -21,6 +21,7 @@ class FileController extends Controller
     public function create()
     {
         $customers = Customer::all(); // Ambil semua customer
+        
         return view('files.create', compact('customers'));
     }
 

@@ -27,7 +27,7 @@ class SupirsController extends Controller
     public function store(Request $request)
     {
         supir::create($request->all());
-        return redirect()->route('supirs')->with('success','Data berhasil ditambahkan');
+        return redirect()->route('supirs.index')->with('success','Data berhasil ditambahkan');
     }
 
     
@@ -58,8 +58,9 @@ class SupirsController extends Controller
   
         $supir->delete();
   
-        return redirect()->route('supirs')->with('success', 'data berhasil dihapus');
+        return redirect()->route('supirs.index')->with('success', 'data berhasil dihapus');
     }
+
 }
 /*
 ------ controller data karyawan ---------------
