@@ -87,11 +87,7 @@
                 <a class="dropdown-item" href="{{ route('profile.edit') }}">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Pengaturan Profil
-                </a>
-                <a class="dropdown-item" href="{{ route('activity_logs.index') }}">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Log Aktivitas
-                </a>                
+                </a>              
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('admin.login') }}">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
